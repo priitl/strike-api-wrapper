@@ -1,4 +1,4 @@
-package com.priitlaht.strikeapi;
+package com.priitlaht.strikeapi.model;
 
 import java.util.Date;
 
