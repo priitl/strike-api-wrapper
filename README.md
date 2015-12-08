@@ -5,7 +5,7 @@ which is a free website for finding torrents.
 
 ## Installation
 
-Just add it as dependency to your project. It's available via [jCenter](https://bintray.com/bintray/jcenter)
+Just add it as dependency to your project. It's available via [jCenter](https://bintray.com/bintray/jcenter).
 
 ### Maven
 
@@ -16,7 +16,7 @@ Just add it as dependency to your project. It's available via [jCenter](https://
     <version>1.0</version>
 </dependency>
 ```
-Read the [Set me up](https://bintray.com/bintray/jcenter) section first, if you haven't added jCenter as a repository to your pom.xml yet.
+Read the [set me up](https://bintray.com/bintray/jcenter) section first, if you haven't added jCenter as a repository to your pom.xml yet.
 
 ### Gradle
 
@@ -40,7 +40,7 @@ dependencies{
  *
  * @param hash  Torrent hash
  */
-List<Torrent> torrents = StrikeApi.find(topTorrent.getHash());
+List<Torrent> torrents = StrikeApi.find("your_torrent_hash");
 ```
 
 ### Search
