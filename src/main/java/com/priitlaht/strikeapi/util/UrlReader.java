@@ -17,7 +17,7 @@ import java.net.URISyntaxException;
  */
 public class UrlReader {
 
-  public static String read(String url, NameValuePair... parameters) {
+  public String read(String url, NameValuePair... parameters) {
     try {
       HttpClient client = HttpClientBuilder.create().build();
       HttpResponse response = client.execute(buildGetMethod(url, parameters));
@@ -30,7 +30,7 @@ public class UrlReader {
     return "";
   }
 
-  private static String buildResponseString(HttpResponse response) throws IOException {
+  private String buildResponseString(HttpResponse response) throws IOException {
     StringBuilder result = new StringBuilder();
     BufferedReader in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
     String inputLine;
@@ -41,7 +41,7 @@ public class UrlReader {
     return result.toString();
   }
 
-  private static HttpGet buildGetMethod(String url, NameValuePair... parameters) throws URISyntaxException {
+  private HttpGet buildGetMethod(String url, NameValuePair... parameters) throws URISyntaxException {
     URIBuilder builder = new URIBuilder(url);
     builder.setParameters(parameters);
     HttpGet httpGet = new HttpGet(builder.build());

@@ -14,9 +14,9 @@ import java.util.List;
  */
 public class TorrentParser {
   private static final String TORRENT_NODE_NAME = "torrents";
-  private static ObjectMapper objectMapper = new ObjectMapper();
+  private ObjectMapper objectMapper = new ObjectMapper();
 
-  public static List<Torrent> parse(String json) {
+  public List<Torrent> parse(String json) {
     List<Torrent> result = new ArrayList<Torrent>();
     try {
       JsonNode node = objectMapper.readValue(json, JsonNode.class);
@@ -32,7 +32,7 @@ public class TorrentParser {
     return result;
   }
 
-  private static Torrent toTorrent(JsonNode torrentNode) {
+  private Torrent toTorrent(JsonNode torrentNode) {
     Torrent torrent = new Torrent();
     torrent.setHash(torrentNode.get("torrent_hash").asText());
     torrent.setTitle(torrentNode.get("torrent_title").asText());
@@ -47,7 +47,7 @@ public class TorrentParser {
     return torrent;
   }
 
-  private static Integer safeParseInt(String value) {
+  private Integer safeParseInt(String value) {
     try {
       return Integer.parseInt(value);
     } catch (NumberFormatException e) {
@@ -55,7 +55,7 @@ public class TorrentParser {
     }
   }
 
-  private static Long safeParseTimestamp(String value) {
+  private Long safeParseTimestamp(String value) {
     try {
       return Long.parseLong(value) * 1000;
     } catch (NumberFormatException e) {
