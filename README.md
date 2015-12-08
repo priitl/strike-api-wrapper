@@ -73,6 +73,7 @@ List<Torrent> torrents = StrikeApi.searchCategory("marvel", Category.TV, VideoQu
 
 ### Top torrents
 
+```java
 /**
  * Find top torrents in category.
  *
