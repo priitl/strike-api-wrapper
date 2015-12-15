@@ -43,7 +43,7 @@ public class TorrentParser {
     torrent.setFileCount(safeParseInt(torrentNode.get("file_count").asText()));
     torrent.setSize(safeParseInt(torrentNode.get("size").asText()));
     torrent.setUploadDate(new Date(safeParseTimestamp(torrentNode.get("upload_date").asText())));
-    torrent.setMagnetUri(torrentNode.get("magnet_uri").asText());
+    torrent.setMagnetUri("magnet:?xt=urn:btih:" + torrent.getHash());
     return torrent;
   }
 
