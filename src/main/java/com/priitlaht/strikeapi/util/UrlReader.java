@@ -1,15 +1,15 @@
 package com.priitlaht.strikeapi.util;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 
 /**
@@ -21,24 +21,14 @@ public class UrlReader {
     try {
       HttpClient client = HttpClientBuilder.create().build();
       HttpResponse response = client.execute(buildGetMethod(url, parameters));
-      return buildResponseString(response);
+      HttpEntity entity = response.getEntity();
+      return EntityUtils.toString(entity, "UTF-8");
     } catch (IOException e) {
       e.printStackTrace();
     } catch (URISyntaxException e) {
       e.printStackTrace();
     }
     return "";
-  }
-
-  private String buildResponseString(HttpResponse response) throws IOException {
-    StringBuilder result = new StringBuilder();
-    BufferedReader in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-    String inputLine;
-    while ((inputLine = in.readLine()) != null) {
-      result.append(inputLine);
-    }
-    in.close();
-    return result.toString();
   }
 
   private HttpGet buildGetMethod(String url, NameValuePair... parameters) throws URISyntaxException {
